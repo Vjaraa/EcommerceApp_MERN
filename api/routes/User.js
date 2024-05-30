@@ -10,7 +10,7 @@ userRoute.post(
   AsyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (user && (await User.matchPassword(password))) {
+    if (user && (await uzser.matchPassword(password))) {
       res.json({
         _id: user.id,
         name: user.name,
@@ -58,8 +58,7 @@ userRoute.post(
   })
 );
 
-
-//profile data
+//get auth profile data
 userRoute.get(
   "/profile",
   protect,
@@ -72,6 +71,34 @@ userRoute.get(
         email: user.email,
         isAdmin: user.isAdmin,
         createdAt: user.createdAt,
+      });
+    } else {
+      res.status(404);
+      throw new Error("USER NOT FOUND");
+    }
+  })
+);
+
+//user profile update
+userRoute.put(
+  "/profile",
+  protect,
+  AsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
+      const updatedUser = await user.save();
+      res.json({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        createdAt: updatedUser.createdAt,
+        token: generateToekn(updatedUser._id),
       });
     } else {
       res.status(404);
