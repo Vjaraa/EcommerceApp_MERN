@@ -10,7 +10,7 @@ userRoute.post(
   AsyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (user && (await uzser.matchPassword(password))) {
+    if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user.id,
         name: user.name,
