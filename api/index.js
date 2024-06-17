@@ -50,8 +50,8 @@ app.listen(PORT || 9000, () => {
 
 
 //valeriajaraarenas
-//P7osq9iMTmHuH4fu
-//mongodb+srv://valeriajaraarenas:P7osq9iMTmHuH4fu@cluster1.de885lz.mongodb.net/REACT-NODE-APP
+//CIziLOweyVYCtqOu
+//"mongodb+srv://valeriajaraarenas:CIziLOweyVYCtqOu@cluster1.de885lz.mongodb.net/REACT-NODE-APP"
 
 //api products test route
 //app.get("/api/products", (req, res) => {
