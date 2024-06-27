@@ -1,12 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
+  //Navigate,
 } from "react-router-dom";
 import ProductPoleraNegra from "./pages/ProductPoleraNegra.jsx";
 import ProductPoleraBlanca from "./pages/ProductPoleraBlanca.jsx";
