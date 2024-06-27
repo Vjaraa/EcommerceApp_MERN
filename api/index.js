@@ -35,7 +35,7 @@ app.use("/api/orders", orderRoute);
 
 
 
-app.listen(PORT || 9000, () => {
+app.listen(PORT || 3002, () => {
   console.log(`server listening on port ${PORT}`);
 });
 
