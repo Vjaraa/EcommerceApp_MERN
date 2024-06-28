@@ -2,16 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import ProductDetail from '../src/components/ProductDetail.jsx';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   //Navigate,
 } from "react-router-dom";
-import ProductPoleraNegra from "./pages/ProductPoleraNegra.jsx";
-import ProductPoleraBlanca from "./pages/ProductPoleraBlanca.jsx";
-import ProductPoleraGris from "./pages/ProductPoleraGris.jsx";
-import ProductPoleraRosada from "./pages/ProductPoleraRosada.jsx";
 import UserRegister from "./components/UserRegister.jsx";
 import LoginPage from './pages/LoginPage.jsx';
 
@@ -20,10 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
       <Routes>
         <Route exact path="/" element={<App/>}></Route>
-        <Route exact path="/ProductPoleraNegra" element={<ProductPoleraNegra/>}></Route>
-        <Route exact path="/ProductPoleraBlanca" element={<ProductPoleraBlanca/>}></Route>
-        <Route exact path="/ProductPoleraGris" element={<ProductPoleraGris/>}></Route>
-        <Route exact path="/ProductPoleraRosada" element={<ProductPoleraRosada/>}></Route>
+        <Route exact path="/product/:id" element={<ProductDetail/>} />
         <Route exact path="/UserRegister" element={<UserRegister/>}></Route>
         <Route exact path="/LoginPage" element={<LoginPage/>}></Route>
       </Routes>
