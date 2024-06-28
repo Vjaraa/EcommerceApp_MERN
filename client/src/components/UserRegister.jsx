@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Layout from "../Layouts/Layouts";
 
 function UserRegister() {
   const { register, handleSubmit, reset } = useForm();
@@ -35,6 +36,7 @@ function UserRegister() {
   };
 
   return (
+    <Layout>
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
         <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
@@ -103,6 +105,7 @@ function UserRegister() {
         </div>
       </div>
     </section>
+    </Layout>
   );
 }
 

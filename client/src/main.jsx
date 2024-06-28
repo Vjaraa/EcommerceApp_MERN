@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import UserRegister from "./components/UserRegister.jsx";
 import LoginPage from './pages/LoginPage.jsx';
+import SessionStartedPage from './pages/SessionStartedPage.jsx';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route exact path="/product/:id" element={<ProductDetail/>} />
         <Route exact path="/UserRegister" element={<UserRegister/>}></Route>
         <Route exact path="/LoginPage" element={<LoginPage/>}></Route>
+        <Route exact path="/SessionStartedPage" element={<SessionStartedPage/>}></Route>
       </Routes>
     </Router>
   </React.StrictMode>
