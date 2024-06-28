@@ -117,7 +117,7 @@ function ProductPoleraRosada() {
                 </div>
                 <p className="leading-relaxed">
                   Polera color rosado, diseñada especialmente
-                  para el día a día, hecha de algodón. Puedes convinarla como prefieras.    
+                  para el día a día, hecha de algodón. Puedes combinarla como prefieras.    
                 </p>
                 <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                   <div className="flex">

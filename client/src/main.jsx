@@ -13,6 +13,7 @@ import ProductPoleraBlanca from "./pages/ProductPoleraBlanca.jsx";
 import ProductPoleraGris from "./pages/ProductPoleraGris.jsx";
 import ProductPoleraRosada from "./pages/ProductPoleraRosada.jsx";
 import UserRegister from "./components/UserRegister.jsx";
+import LoginPage from './pages/LoginPage.jsx';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route exact path="/ProductPoleraGris" element={<ProductPoleraGris/>}></Route>
         <Route exact path="/ProductPoleraRosada" element={<ProductPoleraRosada/>}></Route>
         <Route exact path="/UserRegister" element={<UserRegister/>}></Route>
+        <Route exact path="/LoginPage" element={<LoginPage/>}></Route>
       </Routes>
     </Router>
   </React.StrictMode>

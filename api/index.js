@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const dotenv = require("dotenv");
 const products = require("./data/Products");
@@ -23,6 +24,8 @@ app.use(express.json());
 
 //database seeder routes
 app.use("/api/seed", databaseSeeder);
+
+app.use(cors());
 
 //routes for users
 app.use("/api/users", userRoute);
