@@ -1,13 +1,13 @@
 const express = require("express");
 const userRoute = express.Router();
-const AsyncHandler = require("express-async-handler");
+const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
 const generateToekn = require("../tokenGenerate");
 const protect = require("../middleware/Auth");
 
 userRoute.post(
   "/login",
-  AsyncHandler(async (req, res) => {
+  asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
@@ -29,7 +29,7 @@ userRoute.post(
 //register route
 userRoute.post(
   "/",
-  AsyncHandler(async (req, res) => {
+  asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
     const existUser = await User.findOne({ email });
     if (existUser) {
@@ -62,7 +62,7 @@ userRoute.post(
 userRoute.get(
   "/profile",
   protect,
-  AsyncHandler(async (req, res) => {
+  asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
     if (user) {
       res.json({
@@ -79,11 +79,19 @@ userRoute.get(
   })
 );
 
+userRoute.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.json(users);
+  })
+);
+
 //user profile update
 userRoute.put(
   "/profile",
   protect,
-  AsyncHandler(async (req, res) => {
+  asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
     if (user) {
       user.name = req.body.name || user.name;
