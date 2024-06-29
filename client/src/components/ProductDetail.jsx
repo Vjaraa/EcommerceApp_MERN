@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import ShoppingCartContext from '../components/ShoppingCartContext';  // Importar el contexto
+import Layout from '../Layouts/Layouts';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { addToCart } = useContext(ShoppingCartContext);  // Usar el contexto
 
   useEffect(() => {
     fetch(`http://localhost:3002/api/products/${id}`, {
@@ -28,7 +31,13 @@ const ProductDetail = () => {
     return <div>Loading...</div>;
   }
 
+  const handleAddToCart = () => {
+    console.log('Button clicked'); // Agregar mensaje de depuración
+    addToCart(product);
+  };
+
   return (
+    <Layout>
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -95,8 +104,11 @@ const ProductDetail = () => {
               <span className="title-font font-medium text-2xl text-gray-900">
                 ${product.price}
               </span>
-              <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                Button
+              <button
+                className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                onClick={handleAddToCart}  // Llamar a la función addToCart
+              >
+                Agregar al carrito
               </button>
               <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg
@@ -115,6 +127,7 @@ const ProductDetail = () => {
         </div>
       </div>
     </section>
+    </Layout>
   );
 }
 

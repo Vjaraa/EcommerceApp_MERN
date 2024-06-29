@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Products = () => {
   const [products, setProducts] = useState([]);
 
+
   const url = new URL("http://localhost:3002/api/products");
 
   useEffect(() => {
