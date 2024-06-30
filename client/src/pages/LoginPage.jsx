@@ -5,37 +5,28 @@ import Layout from "../Layouts/Layouts";
 function LoginPage() {
   const { register, handleSubmit, reset } = useForm();
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const onSubmit = async (values) => {
     try {
-      const response = await fetch('http://localhost:3002/api/users/login', {
-        method: 'POST',
+      const response = await fetch('https://1901-2800-300-6f52-abf0-d7e-2d8e-d0f7-9b0f.ngrok-free.app/api/users', {
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2N2UyOTFjOWU0MzZkZmZiNDhkZjgwYSIsImlhdCI6MTcxOTU0OTU2OSwiZXhwIjoxNzIyMTQxNTY5fQ.mGF4kaq963EO-PqoaSqo8tmoRTCnxnIiNQaZKjtt7QI',
+          'ngrok-skip-browser-warning': '69420'
         },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password
-        })
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Usuario no registrado');
       }
-
-      const data = await response.json();
-      console.log(data); // Puedes manejar la respuesta de la API aquí
 
       // Simulación de autenticación exitosa
       setMessage("Inicio de sesión exitoso");
+      setError(""); // Limpiar mensaje de error si había alguno
       reset(); // Limpiar el formulario
-
-      // Aquí podrías manejar el redireccionamiento a la página de inicio de sesión exitoso
-      // Por ejemplo:
-      // history.push('/SessionStarted');
     } catch (error) {
-      console.error('Error:', error);
-      setMessage("Usuario no registrado"); // Mostrar mensaje de error
+      setError(error.message); // Capturar y mostrar el mensaje de error
     }
   };
 
@@ -52,6 +43,12 @@ function LoginPage() {
               {message && (
                 <div className="mb-4 text-green-500">
                   {message}
+                </div>
+              )}
+
+              {error && (
+                <div className="mb-4 text-red-500">
+                  {error}
                 </div>
               )}
 

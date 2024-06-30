@@ -8,10 +8,11 @@ function UserRegister() {
 
   const onSubmit = async (values) => {
     try {
-      const response = await fetch('http://localhost:3002/api/users', {
+      const response = await fetch('https://1901-2800-300-6f52-abf0-d7e-2d8e-d0f7-9b0f.ngrok-free.app/api/users', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': '69420'
         },
         body: JSON.stringify({
           name: values.userName,

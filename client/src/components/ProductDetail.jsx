@@ -9,10 +9,11 @@ const ProductDetail = () => {
   const { addToCart } = useContext(ShoppingCartContext);  // Usar el contexto
 
   useEffect(() => {
-    fetch(`http://localhost:3002/api/products/${id}`, {
+    fetch(`https://1901-2800-300-6f52-abf0-d7e-2d8e-d0f7-9b0f.ngrok-free.app/api/products/${id}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': '69420'
       }
     })
     .then(response => {
@@ -34,6 +35,7 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     console.log('Button clicked'); // Agregar mensaje de depuración
     addToCart(product);
+    console.log('addToCart: ' + addToCart);
   };
 
   return (

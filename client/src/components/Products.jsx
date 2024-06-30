@@ -4,13 +4,14 @@ const Products = () => {
   const [products, setProducts] = useState([]);
 
 
-  const url = new URL("http://localhost:3002/api/products");
+  const url = new URL("https://1901-2800-300-6f52-abf0-d7e-2d8e-d0f7-9b0f.ngrok-free.app/api/products");
 
   useEffect(() => {
     fetch(url, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': '69420'
       }
     })
     .then(response => {
