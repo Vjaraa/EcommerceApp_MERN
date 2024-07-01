@@ -9,22 +9,29 @@ function LoginPage() {
 
   const onSubmit = async (values) => {
     try {
-      const response = await fetch('https://1901-2800-300-6f52-abf0-d7e-2d8e-d0f7-9b0f.ngrok-free.app/api/users', {
-        method: 'GET',
+      const response = await fetch('https://1901-2800-300-6f52-abf0-d7e-2d8e-d0f7-9b0f.ngrok-free.app/api/users/login', {
+        method: 'POST',
         headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2N2UyOTFjOWU0MzZkZmZiNDhkZjgwYSIsImlhdCI6MTcxOTU0OTU2OSwiZXhwIjoxNzIyMTQxNTY5fQ.mGF4kaq963EO-PqoaSqo8tmoRTCnxnIiNQaZKjtt7QI',
+          'Content-Type': 'application/json',
           'ngrok-skip-browser-warning': '69420'
         },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password
+        })
       });
 
       if (!response.ok) {
-        throw new Error('Usuario no registrado');
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.message || 'Usuario no registrado');
       }
 
-      // Simulación de autenticación exitosa
+      const data = await response.json();
       setMessage("Inicio de sesión exitoso");
       setError(""); // Limpiar mensaje de error si había alguno
       reset(); // Limpiar el formulario
+      // Aquí podrías guardar el token en el almacenamiento local o el estado de la aplicación
+      // localStorage.setItem('token', data.token);
     } catch (error) {
       setError(error.message); // Capturar y mostrar el mensaje de error
     }
